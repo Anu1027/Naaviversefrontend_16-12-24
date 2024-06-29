@@ -305,7 +305,7 @@ const CurrentStep = ({ productDataArray, selectedPathId, showSelectedPath, selec
 
   return (
     <div className="currentstep" style={{height:"91vh", overflow:"hidden"}}>
-      <div className="cs-top-area" style={{height:'13rem'}}>
+      <div className="cs-top-area" style={{height:'10rem'}}>
         <div className="cs-text1">
           <div>Your Current Step</div>
           <div

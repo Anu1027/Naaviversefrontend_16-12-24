@@ -52,7 +52,7 @@ const HomePage = () => {
     },
     {
       id: 6,
-      name: "Accomoplish",
+      name: "Accomplish",
       icon: accomplishIcon,
     },
   ];
