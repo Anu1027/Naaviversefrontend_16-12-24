@@ -121,6 +121,7 @@ const UserProfile = () => {
   const [userNameAvailable1, setUserNameAvailable1] = useState(false);
   const [changing, setChanging] = useState(false);
   const [loading, setLoading] = useState(false);
+  
 
   let navigate = useNavigate();
 
@@ -1915,12 +1916,12 @@ const [countryApiValue, setCountryApiValue] = useState([])
                     </select>
                    </div>
                   <InputDivsWithMT
-                    heading="What state are you from?"
-                    placeholderText="State..."
+                    heading="What location are you from?"
+                    placeholderText="state , city , pincode"
                     setFunc={setSelectState}
                     funcValue={selectState}
                   />
-                  <InputDivsWithMT
+                  {/*<InputDivsWithMT
                     heading="What city are you from?"
                     placeholderText="City..."
                     setFunc={setCity}
@@ -1931,7 +1932,7 @@ const [countryApiValue, setCountryApiValue] = useState([])
                     placeholderText="Postal Code..."
                     setFunc={setPostalCode}
                     funcValue={postalCode}
-                  />
+                  />*/}
                   <div className="stepBtns" style={{ marginTop: "3.5rem" }}>
                     <div
                       style={{

@@ -5,7 +5,7 @@ import axios from "axios";
 export const Loginservice = (object) => {
   try {
     const response = axios.post(
-      `https://gxauth.apimachine.com/gx/user/auth/login`,
+      `https://api.naaviverse.com/auth/login`,
       object
     );
     return response;

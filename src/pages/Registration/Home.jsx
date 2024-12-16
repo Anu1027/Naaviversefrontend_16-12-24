@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import logo from "./assets/new/logo.svg"
+import logo from "./assets/new/favicon.png";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import tickMark from "./tick.svg"
-import tickMarkValid from "./tickMarkValid.svg"
+import tickMark from "./tick.svg";
+import tickMarkValid from "./tickMarkValid.svg";
+
 const NewHomePage = () => {
-    const navigate = useNavigate()
-    const [createAccountLoading, setCreateAccountLoading] = useState(false)
-    const [userName, setUserName] = useState("")
-    const [userEmail, setUserEmail] = useState("")
-    const [userPassword, setUserPassword] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
+    const navigate = useNavigate();
+    const [createAccountLoading, setCreateAccountLoading] = useState(false);
+    const [userName, setUserName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
+    const [userPassword, setUserPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [appData, setAppData] = useState(null);
     const [showOtp, setShowOtp] = useState(false);
-    const [userOtp, setUserOtp] = useState('')
-    const [wrongOtp, setWrongOtp] = useState(true)
-    const [loading, setLoading] = useState(false)
-    const [usernameAvailable, setUsernameAvailable] = useState(false)
-    const [emailAvailable, setEmailAvailable] = useState(false)
-    const [showPassReq, setShowPassReq] = useState(false)
+    const [userOtp, setUserOtp] = useState('');
+    const [wrongOtp, setWrongOtp] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [usernameAvailable, setUsernameAvailable] = useState(false);
+    const [emailAvailable, setEmailAvailable] = useState(false);
+    const [showPassReq, setShowPassReq] = useState(false);
     const [validations, setValidations] = useState({
       capitalLetter: false,
       specialCharacter: false,
@@ -92,31 +93,28 @@ const NewHomePage = () => {
           });
       }, []);
 
-      const validatePassword = (password) => {
-        const capitalLetterRegex = /[A-Z]/;
-        const specialCharacterRegex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
-        const numberRegex = /[0-9]/;
-    
-        const isCapitalLetter = capitalLetterRegex.test(password);
-        const isSpecialCharacter = specialCharacterRegex.test(password);
-        const isTenCharacters = password.length >= 10;
-        const isOneNumber = numberRegex.test(password);
-    
-        // Update validation state
-        setValidations({
-          capitalLetter: isCapitalLetter,
-          specialCharacter: isSpecialCharacter,
-          tenCharacters: isTenCharacters,
-          oneNumber: isOneNumber
-        });
-      };
+    const validatePassword = (password) => {
+      const capitalLetterRegex = /[A-Z]/;
+      const specialCharacterRegex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+      const numberRegex = /[0-9]/;
+
+      const isCapitalLetter = capitalLetterRegex.test(password);
+      const isSpecialCharacter = specialCharacterRegex.test(password);
+      const isTenCharacters = password.length >= 10;
+      const isOneNumber = numberRegex.test(password);
+
+      // Update validation state
+      setValidations({
+        capitalLetter: isCapitalLetter,
+        specialCharacter: isSpecialCharacter,
+        tenCharacters: isTenCharacters,
+        oneNumber: isOneNumber
+      });
+    };
 
     const handleCreateAccount = () => {
-      console.log(validations.capitalLetter, validations.specialCharacter, validations.tenCharacters, validations.oneNumber, "ljshfkjwgefkjw")
       if(validations.capitalLetter && validations.specialCharacter && validations.tenCharacters && validations.oneNumber && userPassword === confirmPassword){
-
         setLoading(true);
-    
         axios
           .post(`https://gxauth.apimachine.com/gx/user/signup`, {
             username: userName,
@@ -127,26 +125,26 @@ const NewHomePage = () => {
             signedup_app: appData?.app_code,
           })
           .then(({ data }) => {
-            if (data.status) {
             setLoading(false);
-              setShowOtp(true)
+            if (data.status) {
+              setShowOtp(true);
             }
           });
       }
-      };
+    };
 
     const confirmEmail = () => {
-    axios
+      axios
         .post(`https://gxauth.apimachine.com/gx/user/confirm`, {
-        email: userEmail,
-        code: userOtp,
+          email: userEmail,
+          code: userOtp,
         })
         .then(({ data }) => {
-        if (data.status) {
-            navigate("/login")
-        } else {
+          if (data.status) {
+            navigate("/login");
+          } else {
             setWrongOtp(true);
-        }
+          }
         });
     };
 
@@ -163,14 +161,14 @@ const NewHomePage = () => {
                             value={userEmail}
                             onChange={e => setUserEmail(e.target.value)}
                         />
-                        <div className='availabilityBox'>{emailAvailable ? 'Available': 'Not Available'}</div>
+                        {/* <div className='availabilityBox'>{emailAvailable ? 'Available': 'Not Available'}</div> */}
                     </div>
                     <div className='input1'>
                         <input type="text" placeholder='Username...' disabled={showOtp}
                              value={userName}
                              onChange={e => setUserName(e.target.value)}
                         />
-                       <div className='availabilityBox'>{usernameAvailable ? 'Available': 'Not Available'}</div>
+                       {/* <div className='availabilityBox'>{usernameAvailable ? 'Available': 'Not Available'}</div> */}
                     </div>
                     <div className='passwordWrapper'>
                         <div className='input2'>
